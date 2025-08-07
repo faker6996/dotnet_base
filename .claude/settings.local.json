@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet new:*)",
+      "Bash(dotnet sln:*)",
+      "Bash(dotnet add:*)",
+      "Bash(mkdir:*)",
+      "Bash(del:*)",
+      "Bash(rm:*)",
+      "Bash(dotnet build)",
+      "Bash(mv:*)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add .)"
+    ],
+    "deny": []
+  }
+}
