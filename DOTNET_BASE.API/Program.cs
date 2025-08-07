@@ -4,6 +4,7 @@ using DOTNET_BASE.APPLICATION.User;
 using DOTNET_BASE.APPLICATION.Account;
 using DOTNET_BASE.CORE.Interfaces;
 using DOTNET_BASE.INFRASTRUCTURE.Repositories;
+using DOTNET_BASE.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,9 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 
+// Middleware registration
+builder.Services.AddCustomMiddleware(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
@@ -34,6 +38,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Custom middleware pipeline
+app.UseCustomMiddlewarePipeline(builder.Configuration);
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
